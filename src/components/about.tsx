@@ -75,8 +75,10 @@ function CodeCard() {
     const text = token.text.slice(0, left);
     left -= text.length;
     const tone = "tone" in token ? token.tone : undefined;
+    const className =
+      tone === "keyword" || tone === "bool" || tone === "string" ? toneClass[tone] : undefined;
     return (
-      <span key={index} className={tone ? toneClass[tone] : undefined}>
+      <span key={index} className={className}>
         {text}
       </span>
     );
