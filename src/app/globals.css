@@ -75,6 +75,53 @@ body {
   animation: story-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+@keyframes card-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.card-float {
+  animation: card-float 7.5s ease-in-out infinite;
+}
+
+@keyframes from-side {
+  from {
+    opacity: 0.2;
+    transform: translateX(22vw);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.experience-stage {
+  view-timeline-name: --experience;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .rise {
+      animation: story-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 34%;
+    }
+
+    .from-side {
+      animation: from-side linear both;
+      animation-timeline: --experience;
+      animation-range: entry 0% entry 90%;
+    }
+  }
+}
+
 .footer-beyond {
   display: inline-block;
   margin-right: 0.25em;
@@ -142,6 +189,9 @@ body {
 
   .tech-marquee,
   .story-in,
+  .rise,
+  .from-side,
+  .card-float,
   .footer-sign-line,
   .footer-beyond,
   .footer-star {

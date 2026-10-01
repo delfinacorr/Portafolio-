@@ -78,7 +78,7 @@ export function ProjectCarousel() {
       </div>
       <div className="relative mx-auto max-w-6xl">
         <div className="flex items-end justify-between gap-6">
-          <div>
+          <div className="rise">
             <p className="text-xs font-medium tracking-[0.28em] text-white/60 uppercase">
               {copy.projectsKicker}
             </p>

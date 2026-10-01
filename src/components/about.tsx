@@ -19,6 +19,7 @@ export function About() {
     <section id="sobre-mi" className="bg-blush px-5 py-20 sm:px-10 sm:py-28">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
         <div>
+          <div className="rise">
           <p className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-medium tracking-[0.22em] text-cherry uppercase">
             {copy.aboutKicker}
           </p>
@@ -36,13 +37,14 @@ export function About() {
             </span>
             {copy.aboutFocus}
           </p>
-          <p className="mt-6 max-w-xl font-script text-3xl leading-snug text-cherry">{copy.aboutQuote}</p>
-          <div className="mt-6 max-w-xl space-y-4 text-lg leading-relaxed text-ink">
+          </div>
+          <p className="rise mt-6 max-w-xl font-script text-3xl leading-snug text-cherry">{copy.aboutQuote}</p>
+          <div className="rise mt-6 max-w-xl space-y-4 text-lg leading-relaxed text-ink">
             {copy.aboutParagraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-          <ul className="mt-6 flex flex-wrap gap-2">
+          <ul className="rise mt-6 flex flex-wrap gap-2">
             {copy.services.map((service) => (
               <li
                 key={service}
@@ -52,7 +54,7 @@ export function About() {
               </li>
             ))}
           </ul>
-          <div className="mt-12 max-w-xl border-t border-fuchsia-300/80 pt-8">
+          <div className="rise mt-12 max-w-xl border-t border-fuchsia-300/80 pt-8">
             <p className="font-serif text-[2rem] leading-[1.12] tracking-tight text-ink sm:text-4xl">
               {copy.aboutMark[0]}
             </p>
@@ -61,8 +63,9 @@ export function About() {
             </p>
           </div>
         </div>
+        <div className="card-float">
         <div
-          className="rounded-[28px] bg-[#0c1220] p-6 text-[0.95rem] leading-relaxed shadow-[0_24px_60px_rgb(36_20_40_/_0.18)] sm:p-8 sm:text-base"
+          className="rise rounded-[28px] bg-[#0c1220] p-6 text-[0.95rem] leading-relaxed shadow-[0_24px_60px_rgb(36_20_40_/_0.18)] sm:p-8 sm:text-base"
           aria-label="const delfina"
         >
           <div className="mb-8 flex gap-2" aria-hidden>
@@ -85,6 +88,7 @@ export function About() {
               {"}"};
             </code>
           </pre>
+        </div>
         </div>
       </div>
     </section>

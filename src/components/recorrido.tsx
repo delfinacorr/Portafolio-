@@ -212,14 +212,20 @@ export function Recorrido() {
 
   return (
     <>
-      <section id="recorrido" className="bg-white px-5 py-24 sm:px-10 sm:py-32" aria-label={copy.experienceLabel}>
+      <section
+        id="recorrido"
+        className="experience-stage bg-white px-5 py-24 sm:px-10 sm:py-32"
+        aria-label={copy.experienceLabel}
+      >
         <div className="mx-auto grid max-w-6xl items-start gap-14 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:gap-20">
           <h2 className="text-5xl leading-[0.92] font-semibold tracking-tight text-ink sm:text-6xl lg:sticky lg:top-28">
-            {copy.experienceTitle[0]}
-            <br />
-            {copy.experienceTitle[1]}
+            <span className="from-side block">
+              {copy.experienceTitle[0]}
+              <br />
+              {copy.experienceTitle[1]}
+            </span>
           </h2>
-          <ol className="divide-y divide-line">
+          <ol className="from-side divide-y divide-line">
             {site.experience.map((job, index) => {
               const translated = english ? englishJobs[index] : null;
               const role = translated?.role ?? job.role;

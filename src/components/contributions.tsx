@@ -158,7 +158,7 @@ export function Contributions() {
     >
       <div className="mx-auto max-w-6xl">
         <div className="flex items-end justify-between gap-6">
-          <div className="mx-auto max-w-xl text-center sm:mx-0 sm:text-left">
+          <div className="rise mx-auto max-w-xl text-center sm:mx-0 sm:text-left">
             <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">{copy.contributionsLabel}</h2>
             <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">
               {copy.contributionsLead}
