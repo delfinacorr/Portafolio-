@@ -30,9 +30,18 @@ export function About() {
             <span className="mx-2 text-fuchsia-400" aria-hidden>
               ·
             </span>
+            {copy.aboutRole}
+            <span className="mx-2 text-fuchsia-400" aria-hidden>
+              ·
+            </span>
             {copy.aboutFocus}
           </p>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink">{copy.servicesLead}</p>
+          <p className="mt-6 max-w-xl font-script text-3xl leading-snug text-cherry">{copy.aboutQuote}</p>
+          <div className="mt-6 max-w-xl space-y-4 text-lg leading-relaxed text-ink">
+            {copy.aboutParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
           <ul className="mt-6 flex flex-wrap gap-2">
             {copy.services.map((service) => (
               <li
@@ -43,6 +52,14 @@ export function About() {
               </li>
             ))}
           </ul>
+          <div className="mt-12 max-w-xl border-t border-fuchsia-300/80 pt-8">
+            <p className="font-serif text-[2rem] leading-[1.12] tracking-tight text-ink sm:text-4xl">
+              {copy.aboutMark[0]}
+            </p>
+            <p className="mt-3 font-serif text-[2rem] leading-[1.12] tracking-tight text-cherry sm:text-4xl">
+              {copy.aboutMark[1]}
+            </p>
+          </div>
         </div>
         <div
           className="rounded-[28px] bg-[#0c1220] p-6 text-[0.95rem] leading-relaxed shadow-[0_24px_60px_rgb(36_20_40_/_0.18)] sm:p-8 sm:text-base"

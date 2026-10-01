@@ -47,9 +47,9 @@ export const site = {
     kicker: "Sobre mí",
     name: "Delfina Corradini",
     place: "Buenos Aires, Argentina",
-    focus: "Web3 y blockchain",
+    focus: "Web3 & blockchain",
     servicesLead:
-      "Diseño y desarrollo de soluciones a medida enfocadas en resolver problemas reales, optimizar procesos e impulsar el crecimiento de tu proyecto.",
+      "Diseño y desarrollo de soluciones a medida enfocadas en resolver problemas reales, optimizar procesos e impulsar el crecimiento de tu proyecto. Especializada en productos de software multiplataforma y ecosistemas impulsados por IA.",
     services: ["Páginas web", "Automatizaciones", "Sistemas internos"],
   },
   hero: {
