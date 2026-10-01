@@ -52,8 +52,6 @@ export const ui = {
     footerSignEmail: "Email",
     footerSignRoles: ["Full Stack Developer", "Web3 Builder", "Argentina"],
     contact: "Contactame",
-    quote: "Pedir presupuesto",
-    quoteSubject: "Presupuesto",
     language: "Idioma",
   },
   en: {
@@ -107,8 +105,6 @@ export const ui = {
     footerSignEmail: "Email",
     footerSignRoles: ["Full Stack Developer", "Web3 Builder", "Argentina"],
     contact: "Contact me",
-    quote: "Get a quote",
-    quoteSubject: "Quote",
     language: "Language",
   },
 } as const satisfies Record<Lang, Record<string, unknown>>;

@@ -53,12 +53,6 @@ export function SiteFooter() {
               >
                 {copy.contact}
               </a>
-              <a
-                href={`mailto:${site.email}?subject=${encodeURIComponent(copy.quoteSubject)}`}
-                className="inline-flex h-11 items-center rounded-full border border-ink/15 bg-white/75 px-5 text-sm font-medium text-ink transition-colors hover:bg-white"
-              >
-                {copy.quote}
-              </a>
             </div>
           </div>
           <Image
