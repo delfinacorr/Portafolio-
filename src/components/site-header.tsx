@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [solid, setSolid] = useState(false);
-  const { lang } = useLang();
+  const { lang, setLang } = useLang();
   const copy = ui[lang];
 
   useEffect(() => {
@@ -81,12 +81,21 @@ export function SiteHeader() {
             </a>
           ))}
         </nav>
-        <a
-          href="#contacto"
-          className="hidden h-9 items-center rounded-full bg-gradient-to-r from-fuchsia-500 to-orange-400 px-4 text-sm font-medium text-white transition-colors hover:brightness-110 md:inline-flex"
-        >
-          {copy.cta}
-        </a>
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1" role="group" aria-label={copy.language}>
+            <LanguageButton active={lang === "es"} onLight={onLight} onClick={() => setLang("es")}>
+              Español
+            </LanguageButton>
+            <LanguageButton active={lang === "en"} onLight={onLight} onClick={() => setLang("en")}>
+              English
+            </LanguageButton>
+          </div>
+          <a
+            href="#contacto"
+            className="hidden h-9 items-center rounded-full bg-gradient-to-r from-fuchsia-500 to-orange-400 px-4 text-sm font-medium text-white transition-colors hover:brightness-110 md:inline-flex"
+          >
+            {copy.cta}
+          </a>
         <button
           type="button"
           className={`inline-flex h-10 w-10 items-center justify-center rounded-full border md:hidden ${
@@ -102,6 +111,7 @@ export function SiteHeader() {
             <span className={`block h-px w-5 ${onLight ? "bg-ink" : "bg-white"}`} />
           </span>
         </button>
+        </div>
       </div>
       {open ? (
         <nav
@@ -138,5 +148,31 @@ export function SiteHeader() {
         </nav>
       ) : null}
     </header>
+  );
+}
+
+function LanguageButton({
+  active,
+  onLight,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onLight: boolean;
+  onClick: () => void;
+  children: string;
+}) {
+  const idle = onLight ? "text-ink/55 hover:text-ink" : "text-white/70 hover:text-white";
+  const pressed = onLight ? "bg-ink font-medium text-white" : "bg-white font-medium text-ink";
+
+  return (
+    <button
+      type="button"
+      aria-pressed={active}
+      onClick={onClick}
+      className={`rounded-full px-3 py-1.5 text-sm transition-colors ${active ? pressed : idle}`}
+    >
+      {children}
+    </button>
   );
 }

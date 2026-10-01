@@ -6,7 +6,7 @@ import { useLang } from "@/i18n/language";
 import Image from "next/image";
 
 export function SiteFooter() {
-  const { lang, setLang } = useLang();
+  const { lang } = useLang();
   const copy = ui[lang];
 
   return (
@@ -32,17 +32,7 @@ export function SiteFooter() {
               {copy.quote}
             </a>
           </div>
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-2" role="group" aria-label={copy.language}>
-              <LanguageButton active={lang === "es"} onClick={() => setLang("es")}>
-                Español
-              </LanguageButton>
-              <LanguageButton active={lang === "en"} onClick={() => setLang("en")}>
-                English
-              </LanguageButton>
-            </div>
-            <p className="text-xs text-ink/45">© 2026 {site.name}</p>
-          </div>
+          <p className="mt-12 text-xs text-ink/45">© 2026 {site.name}</p>
         </div>
         <Image
           src="/delfina-footer-comp.jpg"
@@ -53,28 +43,5 @@ export function SiteFooter() {
         />
       </div>
     </footer>
-  );
-}
-
-function LanguageButton({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: string;
-}) {
-  return (
-    <button
-      type="button"
-      aria-pressed={active}
-      onClick={onClick}
-      className={`rounded-full px-3 py-1.5 text-sm transition-colors ${
-        active ? "bg-ink font-medium text-white" : "text-ink/55 hover:text-ink"
-      }`}
-    >
-      {children}
-    </button>
   );
 }

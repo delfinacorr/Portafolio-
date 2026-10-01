@@ -119,16 +119,16 @@ export const site = {
   pieces: [
     {
       title: "Senda",
-      summary: "Maqueta en Flutter del chat de finanzas de Senda. Sin backend: la interfaz primero.",
-      stack: "Dart · Flutter",
-      href: "https://github.com/delfinacorr/senda_chat",
+      summary: "La app de Senda, en la organización SendaLabs.",
+      stack: "JavaScript · Next.js",
+      href: "https://github.com/SendaLabs/Senda.App",
     },
     {
       title: "TrustBid",
       summary:
-        "dApp en TypeScript, con lógica en Python y contratos en Rust. La pieza grande del perfil público.",
-      stack: "TypeScript · Python · Rust",
-      href: "https://github.com/delfinacorr/TrustBid-dapp-v1",
+        "Monorepo platform: la dApp, la API y los paquetes. Plataforma de transparencia para ONGs en Stellar.",
+      stack: "TypeScript · Turborepo · Stellar",
+      href: "https://github.com/TrustBid/platform",
     },
     {
       title: "DeFiWise",

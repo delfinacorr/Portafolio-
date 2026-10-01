@@ -31,8 +31,8 @@ export const englishJobs = [
 ];
 
 export const englishPieces = [
-  "Flutter mockup of Senda's finance chat. No backend: the interface first.",
-  "A TypeScript dApp, with logic in Python and contracts in Rust. The largest piece of the public profile.",
+  "The Senda app, from the SendaLabs organization.",
+  "The platform monorepo: the dApp, the API, and the packages. A transparency platform for NGOs on Stellar.",
   "An educational DeFi platform on Stellar. Finishing a module mints a badge and XP tokens on testnet.",
 ];
 
