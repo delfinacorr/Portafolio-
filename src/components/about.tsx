@@ -3,6 +3,7 @@
 import { site } from "@/content/site";
 import { ui } from "@/i18n/copy";
 import { useLang } from "@/i18n/language";
+import { useEffect, useRef, useState } from "react";
 
 const profile = [
   { key: "fullStack", value: "true", kind: "bool" },
@@ -10,6 +11,101 @@ const profile = [
   { key: "location", value: "'Argentina'", kind: "string" },
   { key: "goal", value: "'Build a better future'", kind: "string" },
 ] as const;
+
+const codeTokens = [
+  { text: "const", tone: "keyword" },
+  { text: " delfina = {\n" },
+  ...profile.flatMap((line) => [
+    { text: `  ${line.key}: ` },
+    { text: line.value, tone: line.kind === "string" ? "string" : "bool" },
+    { text: ",\n" },
+  ]),
+  { text: "};" },
+] as const;
+
+const codeSource = codeTokens.map((token) => token.text).join("");
+
+const toneClass = {
+  keyword: "text-[#a78bfa]",
+  bool: "text-[#f0abfc]",
+  string: "text-[#86efac]",
+} as const;
+
+function CodeCard() {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [motion, setMotion] = useState(false);
+  const [started, setStarted] = useState(false);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => {
+      const allowed = !media.matches;
+      setMotion(allowed);
+      if (!allowed) setCount(codeSource.length);
+    };
+    apply();
+    media.addEventListener("change", apply);
+    return () => media.removeEventListener("change", apply);
+  }, []);
+
+  useEffect(() => {
+    const node = cardRef.current;
+    if (!node || !motion) return;
+    setCount(0);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) setStarted(true);
+      },
+      { threshold: 0.45 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [motion]);
+
+  useEffect(() => {
+    if (!motion || !started || count >= codeSource.length) return;
+    const id = window.setTimeout(() => setCount((current) => current + 1), 28);
+    return () => window.clearTimeout(id);
+  }, [motion, started, count]);
+
+  let left = count;
+  const visible = codeTokens.map((token, index) => {
+    if (left <= 0) return null;
+    const text = token.text.slice(0, left);
+    left -= text.length;
+    const tone = "tone" in token ? token.tone : undefined;
+    return (
+      <span key={index} className={tone ? toneClass[tone] : undefined}>
+        {text}
+      </span>
+    );
+  });
+
+  return (
+    <div
+      ref={cardRef}
+      className="rise rounded-[28px] bg-[#0c1220] p-6 text-[0.95rem] leading-relaxed shadow-[0_24px_60px_rgb(36_20_40_/_0.18)] sm:p-8 sm:text-base"
+      aria-label="const delfina"
+    >
+      <div className="mb-8 flex gap-2" aria-hidden>
+        <span className="size-3 rounded-full bg-[#ff5f57]" />
+        <span className="size-3 rounded-full bg-[#febc2e]" />
+        <span className="size-3 rounded-full bg-[#28c840]" />
+      </div>
+      <p className="sr-only">{codeSource}</p>
+      <pre className="grid overflow-x-auto font-mono text-[#c4b5fd]">
+        <code className="invisible col-start-1 row-start-1 whitespace-pre" aria-hidden>
+          {codeSource}
+        </code>
+        <code className="col-start-1 row-start-1 whitespace-pre" aria-hidden>
+          {visible}
+          {motion && count < codeSource.length ? <span className="type-caret" /> : null}
+        </code>
+      </pre>
+    </div>
+  );
+}
 
 export function About() {
   const { lang } = useLang();
@@ -63,33 +159,7 @@ export function About() {
             </p>
           </div>
         </div>
-        <div className="card-float">
-        <div
-          className="rise rounded-[28px] bg-[#0c1220] p-6 text-[0.95rem] leading-relaxed shadow-[0_24px_60px_rgb(36_20_40_/_0.18)] sm:p-8 sm:text-base"
-          aria-label="const delfina"
-        >
-          <div className="mb-8 flex gap-2" aria-hidden>
-            <span className="size-3 rounded-full bg-[#ff5f57]" />
-            <span className="size-3 rounded-full bg-[#febc2e]" />
-            <span className="size-3 rounded-full bg-[#28c840]" />
-          </div>
-          <pre className="overflow-x-auto font-mono text-[#c4b5fd]">
-            <code>
-              <span className="text-[#a78bfa]">const</span> delfina = {"{"}
-              {"\n"}
-              {profile.map((line) => (
-                <span key={line.key}>
-                  {"  "}
-                  {line.key}:{" "}
-                  <span className={line.kind === "string" ? "text-[#86efac]" : "text-[#f0abfc]"}>{line.value}</span>,
-                  {"\n"}
-                </span>
-              ))}
-              {"}"};
-            </code>
-          </pre>
-        </div>
-        </div>
+        <CodeCard />
       </div>
     </section>
   );

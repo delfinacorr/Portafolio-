@@ -75,19 +75,20 @@ body {
   animation: story-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@keyframes card-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
+.type-caret {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1.05em;
+  margin-left: 1px;
+  background: #f0abfc;
+  vertical-align: text-bottom;
+  animation: caret-blink 1s steps(1) infinite;
 }
 
-.card-float {
-  animation: card-float 7.5s ease-in-out infinite;
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes from-side {
@@ -191,7 +192,7 @@ body {
   .story-in,
   .rise,
   .from-side,
-  .card-float,
+  .type-caret,
   .footer-sign-line,
   .footer-beyond,
   .footer-star {
