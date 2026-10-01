@@ -1,8 +1,14 @@
+"use client";
+
 import { HeroLanyard } from "@/components/hero-lanyard";
 import { SocialIcons } from "@/components/social-icons";
 import { site } from "@/content/site";
+import { ui } from "@/i18n/copy";
+import { useLang } from "@/i18n/language";
 
 export function Hero() {
+  const { lang } = useLang();
+  const copy = ui[lang];
   return (
     <section className="relative flex h-svh min-h-[620px] flex-col overflow-hidden bg-[#05010a] text-white">
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -39,7 +45,7 @@ export function Hero() {
       <div className="relative z-10 flex min-h-0 flex-1 flex-col">
         <h1 className="px-2 pt-16 sm:px-4 lg:pt-20">
           <span className="sr-only">
-            {site.name}, {site.role}. {site.focus}.
+            {site.name}, {copy.role}. {copy.focus}.
           </span>
           <svg viewBox="0 0 1000 190" className="w-full overflow-visible font-sans" aria-hidden>
             <defs>
@@ -75,7 +81,7 @@ export function Hero() {
             <span aria-hidden className="mt-3 flex items-center gap-3 sm:gap-4">
               <a
                 href="#contacto"
-                aria-label={site.hero.cta}
+                aria-label={copy.cta}
                 className="grid size-12 shrink-0 place-items-center rounded-full bg-gradient-to-r from-fuchsia-500 to-orange-400 shadow-[0_0_30px_rgb(255_120_80_/_0.45)] transition-transform hover:scale-105 sm:size-16"
               >
                 <svg viewBox="0 0 24 24" className="size-6" aria-hidden>
@@ -104,7 +110,7 @@ export function Hero() {
           </div>
         </div>
       </div>
-      <div role="region" aria-label="Tecnologías" className="relative z-20 overflow-hidden bg-white py-4 text-ink">
+      <div role="region" aria-label={copy.tech} className="relative z-20 overflow-hidden bg-white py-4 text-ink">
         <div className="tech-marquee flex w-max">
           {[0, 1].map((copy) => (
             <ul key={copy} aria-hidden={copy === 1} className="flex shrink-0 items-center">

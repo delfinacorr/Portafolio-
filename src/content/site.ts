@@ -1,10 +1,10 @@
 export type SocialIcon = "github" | "linkedin" | "x" | "telegram";
 
-export type Chapter = {
-  when: string;
-  title: string;
+export type Experience = {
+  company: string;
   role: string;
-  text: string;
+  when: string;
+  points: string[];
 };
 
 export type Piece = {
@@ -37,10 +37,21 @@ export const site = {
     { label: "Telegram", href: "https://t.me/Delfiicorradini", icon: "telegram" },
   ] satisfies { label: string; href: string; icon: SocialIcon }[],
   nav: [
-    { href: "#recorrido", label: "Recorrido" },
-    { href: "#piezas", label: "Piezas" },
+    { href: "#sobre-mi", label: "Sobre mí" },
+    { href: "#recorrido", label: "Experiencia" },
+    { href: "#proyectos", label: "Proyectos" },
+    { href: "#aportes", label: "Aportes" },
     { href: "#contacto", label: "Contacto" },
   ],
+  about: {
+    kicker: "Sobre mí",
+    name: "Delfina Corradini",
+    place: "Buenos Aires, Argentina",
+    focus: "Web3 y blockchain",
+    servicesLead:
+      "Diseño y desarrollo de soluciones a medida enfocadas en resolver problemas reales, optimizar procesos e impulsar el crecimiento de tu proyecto.",
+    services: ["Páginas web", "Automatizaciones", "Sistemas internos"],
+  },
   hero: {
     line1: "FULL STACK",
     line2: "DEVELOPER",
@@ -62,53 +73,56 @@ export const site = {
     "HTML",
     "CSS",
   ],
-  purpose:
-    "El código tiene que servirle a alguien. Aprendí eso manteniendo páginas, automatizando correo y armando bases en una energética. Después lo llevé a Stellar.",
-  chapters: [
+  experience: [
     {
-      when: "2022 — 2026",
-      title: "El oficio",
-      role: "Ingeniería en Sistemas · UAI",
-      text: "Estudio Ingeniería en Sistemas en la Universidad Abierta Interamericana. El recorrido arranca cuidando las webs de AMC Networks, pasa por el correo de la universidad y sigue en contratos que otras personas pueden auditar.",
-    },
-    {
-      when: "oct. 2022 — abr. 2024",
-      title: "AMC Networks",
-      role: "Production Operation Intern",
-      text: "El primer trabajo fue que lo publicado siguiera en pie. Corregía errores en las webs de la compañía, revisaba maquetas y actualizaba el contenido de las plataformas internas.",
-    },
-    {
-      when: "2022",
-      title: "Santander + ITBA",
-      role: "Beca Full Stack Developer",
-      text: "El mismo año en que entré a AMC, la beca le puso nombre al oficio. Full stack dejó de ser una materia y pasó a ser la forma de tomar un problema de punta a punta.",
-    },
-    {
-      when: "jun. 2024 — ago. 2024",
-      title: "La universidad",
-      role: "Pasante · Correo corporativo",
-      text: "En la UAI automaticé el filtrado de campañas masivas. El correo tenía que llegar a quien correspondía, y el área tenía que dejar de armarlo a mano.",
-    },
-    {
-      when: "ago. 2024 — mar. 2025",
-      title: "Aconcagua",
+      company: "Aconcagua Energía",
       role: "Pasante de Sistemas",
-      text: "En Aconcagua Energía diseñé bases con Oracle SQL y PL/SQL, aplicaciones en APEX y servicios REST. También el seguimiento de tareas y el soporte para que la operación no se corte.",
+      when: "ago. 2024 – mar. 2025",
+      points: [
+        "Diseño y gestión de bases de datos relacionales con Oracle SQL y PL/SQL.",
+        "Desarrollo de aplicaciones web interactivas y servicios REST con Oracle APEX.",
+        "Implementación de soluciones de seguimiento y organización de tareas en proyectos internos.",
+        "Soporte técnico y resolución de incidencias para garantizar continuidad operativa.",
+        "Colaboración en desarrollo frontend (HTML, CSS, JavaScript).",
+      ],
     },
     {
-      when: "2025 — 2026",
-      title: "Stellar",
-      role: "Contratos, dApps y comunidad",
-      text: "En GitHub el trabajo nuevo está en Rust y TypeScript: un contrato Soroban, TrustBid, pagos condicionales para agentes y la maqueta del chat de Senda. Maintainer de Stellar Drips en Buen día Builders. Cuatro meses después de entrar a Web3, la beca Impact Studio G.I.V.E. me llevó a Medellín.",
+      company: "Universidad Abierta Interamericana",
+      role: "Pasante – Correo Corporativo",
+      when: "jun. 2024 – ago. 2024",
+      points: [
+        "Automatización de procesos de gestión y filtrado de datos para campañas de correo masivo.",
+        "Optimización del envío de comunicaciones, mejorando la eficiencia operativa del área.",
+        "Mejora de herramientas internas mediante procesamiento y organización de datos.",
+      ],
     },
-  ] satisfies Chapter[],
+    {
+      company: "AMC Networks International LatAm",
+      role: "Production Operation Intern",
+      when: "oct. 2022 – abr. 2024",
+      points: [
+        "Soporte técnico y corrección de errores en páginas web de la compañía.",
+        "Participación en revisión de maquetas garantizando calidad y usabilidad.",
+        "Mantenimiento y actualización de contenido digital en plataformas internas.",
+      ],
+    },
+  ] satisfies Experience[],
   marks: [
-    { title: "1° puesto", detail: "Hackathon Vendimia Tech", year: "2026" },
-    { title: "2° puesto nacional", detail: "Huawei ICT", year: "2025" },
-    { title: "Beca", detail: "Impact Studio G.I.V.E. · Medellín", year: "2026" },
+    { title: "Beca", detail: "Santander + ITBA", year: "2022" },
     { title: "Beca", detail: "Mérito académico CACIC", year: "2024" },
+    { title: "2° puesto nacional", detail: "Huawei ICT", year: "2025" },
+    { title: "Beca", detail: "Código Futura", year: "2025" },
+    { title: "Beca", detail: "Impact Studio G.I.V.E. · Medellín", year: "2026" },
+    { title: "1° puesto", detail: "Hackathon Vendimia Tech", year: "2026" },
+    { title: "Beca", detail: "São Paulo", year: "2026" },
   ],
   pieces: [
+    {
+      title: "Senda",
+      summary: "Maqueta en Flutter del chat de finanzas de Senda. Sin backend: la interfaz primero.",
+      stack: "Dart · Flutter",
+      href: "https://github.com/delfinacorr/senda_chat",
+    },
     {
       title: "TrustBid",
       summary:
@@ -117,28 +131,11 @@ export const site = {
       href: "https://github.com/delfinacorr/TrustBid-dapp-v1",
     },
     {
-      title: "Intent layer",
-      summary: "Pagos condicionales para agentes de IA sobre Stellar.",
-      stack: "TypeScript · Rust · Stellar",
-      href: "https://github.com/delfinacorr/intent-governance-layer",
-    },
-    {
-      title: "Hello Tiburona",
-      summary: "Contrato Soroban con estado. El hola en cadena, escrito en Rust.",
-      stack: "Rust · Soroban",
-      href: "https://github.com/delfinacorr/hello-tiburona",
-    },
-    {
-      title: "Senda Chat",
-      summary: "Maqueta en Flutter del chat de finanzas de Senda. Sin backend: la interfaz primero.",
-      stack: "Dart · Flutter",
-      href: "https://github.com/delfinacorr/senda_chat",
-    },
-    {
-      title: "TrustBid, primera capa",
-      summary: "La versión en JavaScript, antes de pasar el dApp a TypeScript.",
-      stack: "JavaScript · CSS",
-      href: "https://github.com/delfinacorr/TrustBid",
+      title: "DeFiWise",
+      summary:
+        "Plataforma educativa de DeFi en Stellar. Al terminar un módulo se mintea un badge y tokens de XP en testnet.",
+      stack: "Next.js · Soroban · Stellar",
+      href: "https://github.com/BuenDia-Builders/defiwise-stellar",
     },
   ] satisfies Piece[],
 };

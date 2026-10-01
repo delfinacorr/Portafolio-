@@ -3,6 +3,7 @@
 @theme inline {
   --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-bodoni), ui-serif, Georgia, serif;
+  --font-script: var(--font-caveat), cursive;
   --color-cherry: #c026d3;
   --color-cherry-deep: #c2410c;
   --color-ink: #241428;

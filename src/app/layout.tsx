@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Bodoni_Moda, Outfit } from "next/font/google";
+import { Bodoni_Moda, Caveat, Outfit } from "next/font/google";
 import { site } from "@/content/site";
+import { LanguageProvider } from "@/i18n/language";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -14,6 +15,12 @@ const bodoni = Bodoni_Moda({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-bodoni",
+  display: "swap",
+});
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
   display: "swap",
 });
 
@@ -35,9 +42,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="es"
-      className={`${outfit.variable} ${bodoni.variable} h-full antialiased`}
+      className={`${outfit.variable} ${bodoni.variable} ${caveat.variable} h-full antialiased`}
     >
-      <body className="min-h-full font-sans">{children}</body>
+      <body className="min-h-full font-sans">
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }
