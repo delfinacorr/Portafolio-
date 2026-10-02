@@ -1,5 +1,20 @@
 export const englishJobs = [
   {
+    role: "Web Developer · UI/UX · System Redesign",
+    when: "2026 – Present",
+    summary:
+      "End-to-end development and redesign of the website and digital system for Minibus Ezeiza SRL, focused on improving the user experience, modernizing the visual identity, and streamlining booking and service management.",
+    points: [
+      "Complete redesign of the interface and user experience.",
+      "Built a new responsive landing page.",
+      "Designed the booking and inquiry flow.",
+      "Built web components and interactions.",
+      "Optimized the experience for mobile devices.",
+      "Designed a modern, conversion-focused interface.",
+      "Analyzed and reorganized the structure of the site and system.",
+    ],
+  },
+  {
     role: "Systems Intern",
     when: "Aug. 2024 – Mar. 2025",
     points: [

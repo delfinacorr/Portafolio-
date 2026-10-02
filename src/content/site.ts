@@ -4,6 +4,7 @@ export type Experience = {
   company: string;
   role: string;
   when: string;
+  summary?: string;
   points: string[];
 };
 
@@ -74,6 +75,22 @@ export const site = {
     "CSS",
   ],
   experience: [
+    {
+      company: "Minibus Ezeiza SRL",
+      role: "Web Developer · UI/UX · System Redesign",
+      when: "2026 – actualidad",
+      summary:
+        "Desarrollo y rediseño integral de la página web y sistema digital de Minibus Ezeiza SRL, enfocado en mejorar la experiencia de usuario, modernizar la identidad visual y optimizar el flujo de reservas y gestión del servicio.",
+      points: [
+        "Rediseño completo de la interfaz y experiencia de usuario.",
+        "Desarrollo de una nueva landing page responsive.",
+        "Diseño de flujo de reservas y consultas.",
+        "Desarrollo de componentes e interacciones web.",
+        "Optimización de la experiencia para dispositivos móviles.",
+        "Diseño de una interfaz moderna orientada a conversión.",
+        "Análisis y reorganización de la estructura del sitio y sistema.",
+      ],
+    },
     {
       company: "Aconcagua Energía",
       role: "Pasante de Sistemas",

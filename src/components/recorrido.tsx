@@ -230,12 +230,14 @@ export function Recorrido() {
               const translated = english ? englishJobs[index] : null;
               const role = translated?.role ?? job.role;
               const when = translated?.when ?? job.when;
+              const summary = translated?.summary ?? job.summary;
               const points = translated?.points ?? job.points;
               return (
               <li key={job.company} className="py-10 first:pt-0 last:pb-0">
                 <p className="text-sm tracking-wide text-muted">{when}</p>
                 <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">{job.company}</h3>
                 <p className="mt-2 text-xs font-medium tracking-[0.16em] text-cherry uppercase">{role}</p>
+                {summary ? <p className="mt-4 text-base leading-relaxed text-ink">{summary}</p> : null}
                 <ul className="mt-5 space-y-3">
                   {points.map((point) => (
                     <li key={point} className="flex gap-3 text-base leading-relaxed text-ink">
