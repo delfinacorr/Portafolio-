@@ -1,4 +1,4 @@
-import { About } from "@/components/about";
+import { About, AboutMark } from "@/components/about";
 import { Contributions } from "@/components/contributions";
 import { Hero } from "@/components/hero";
 import { ProjectCarousel } from "@/components/project-carousel";
@@ -14,6 +14,7 @@ export default function Home() {
         <Hero />
         <About />
         <Recorrido />
+        <AboutMark />
         <ProjectCarousel />
         <Contributions />
       </main>

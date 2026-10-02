@@ -37,7 +37,7 @@ export function ProjectCarousel() {
     if (!motion || paused) return;
     const id = window.setInterval(() => {
       setActive((current) => (current + 1) % count);
-    }, 6800);
+    }, 1600);
     return () => window.clearInterval(id);
   }, [motion, paused, count]);
 
@@ -119,7 +119,7 @@ export function ProjectCarousel() {
                 <article
                   key={piece.href}
                   aria-hidden={delta !== 0}
-                  className="absolute top-0 left-1/2 w-[min(86vw,34rem)] transition-all duration-700 ease-out"
+                  className="absolute top-0 left-1/2 w-[min(86vw,34rem)] transition-all duration-500 ease-out"
                   style={{
                     transform: `translateX(calc(-50% + ${delta * 78}%)) scale(${delta === 0 ? 1 : 0.86})`,
                     opacity: hidden ? 0 : delta === 0 ? 1 : 0.28,

@@ -49,12 +49,10 @@ function pagesOf(items: MergedPull[], size: number) {
 
 function Card({
   pull,
-  featured,
   english,
   viewPr,
 }: {
   pull: MergedPull;
-  featured: boolean;
   english: boolean;
   viewPr: string;
 }) {
@@ -62,11 +60,7 @@ function Card({
   const title = text?.title ?? pull.title;
   const summary = text ? text.summary : pull.summary;
   return (
-    <article
-      className={`flex h-full flex-col rounded-2xl border bg-white p-5 shadow-[0_12px_40px_rgb(36_20_40_/_0.06)] ${
-        featured ? "border-fuchsia-400" : "border-line"
-      }`}
-    >
+    <article className="flex h-full flex-col rounded-2xl border-2 border-fuchsia-400 bg-white p-5 shadow-[0_12px_40px_rgb(36_20_40_/_0.06)]">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="flex items-center gap-2 font-semibold text-ink">
@@ -186,7 +180,7 @@ export function Contributions() {
 
         <ul className="mt-10 grid gap-4 sm:grid-cols-3">
           {statValues.map((value, index) => (
-            <li key={copy.stats[index]} className="rounded-2xl border border-line bg-blush px-6 py-8 text-center">
+            <li key={copy.stats[index]} className="rounded-2xl border-2 border-fuchsia-400 bg-blush px-6 py-8 text-center">
               <p className={`text-4xl font-semibold tracking-tight ${index === 1 ? "text-fuchsia-600" : "text-ink"}`}>
                 {value}
               </p>
@@ -208,12 +202,7 @@ export function Contributions() {
               >
                 {items.map((pull) => (
                   <li key={pull.href} className="min-h-0">
-                    <Card
-                      pull={pull}
-                      featured={pageIndex === 0 && pull.href === contributions[0].href}
-                      english={english}
-                      viewPr={copy.viewPr}
-                    />
+                    <Card pull={pull} english={english} viewPr={copy.viewPr} />
                   </li>
                 ))}
               </ul>

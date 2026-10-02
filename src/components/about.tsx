@@ -31,6 +31,118 @@ const toneClass = {
   string: "text-[#86efac]",
 } as const;
 
+function MarkStatement({ lines }: { lines: readonly string[] }) {
+  const blockRef = useRef<HTMLDivElement>(null);
+  const [motion, setMotion] = useState(false);
+  const [started, setStarted] = useState(false);
+  const [shown, setShown] = useState<[string, string]>(["", ""]);
+  const [caret, setCaret] = useState<0 | 1 | null>(0);
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => {
+      const allowed = !media.matches;
+      setMotion(allowed);
+      if (!allowed) {
+        setShown([lines[0], lines[1]]);
+        setCaret(null);
+      }
+    };
+    apply();
+    media.addEventListener("change", apply);
+    return () => media.removeEventListener("change", apply);
+  }, [lines]);
+
+  useEffect(() => {
+    const node = blockRef.current;
+    if (!node || !motion) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) setStarted(true);
+      },
+      { threshold: 0.6 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [motion]);
+
+  useEffect(() => {
+    if (!motion || !started) return;
+    let cancelled = false;
+    const sleep = (ms: number) =>
+      new Promise<void>((resolve) => {
+        window.setTimeout(resolve, ms);
+      });
+
+    async function run() {
+      setShown(["", ""]);
+      while (!cancelled) {
+        for (const index of [0, 1] as const) {
+          setCaret(index);
+          for (let length = 1; length <= lines[index].length; length += 1) {
+            if (cancelled) return;
+            const next = lines[index].slice(0, length);
+            setShown((current) => (index === 0 ? [next, current[1]] : [current[0], next]));
+            await sleep(34);
+          }
+        }
+        await sleep(1400);
+        if (cancelled) return;
+        for (const index of [1, 0] as const) {
+          setCaret(index);
+          for (let length = lines[index].length - 1; length >= 0; length -= 1) {
+            if (cancelled) return;
+            const next = lines[index].slice(0, length);
+            setShown((current) => (index === 0 ? [next, current[1]] : [current[0], next]));
+            await sleep(16);
+          }
+        }
+        setCaret(0);
+        await sleep(420);
+      }
+    }
+
+    void run();
+    return () => {
+      cancelled = true;
+    };
+  }, [motion, started, lines]);
+
+  return (
+    <div
+      ref={blockRef}
+      className="rise mx-auto w-full max-w-4xl text-center"
+    >
+      <p className="sr-only">
+        {lines[0]} {lines[1]}
+      </p>
+      {lines.map((line, index) => (
+        <p
+          key={line}
+          className={`font-serif text-[2rem] leading-[1.12] tracking-tight sm:text-4xl ${
+            index === 0 ? "text-ink" : "mt-3 text-cherry"
+          }`}
+        >
+          <span className="relative block">
+            <span className="invisible block" aria-hidden>
+              {line}
+            </span>
+            <span className="absolute inset-0" aria-hidden>
+              {shown[index]}
+              {motion && caret === index ? (
+                <span
+                  className="type-caret"
+                  style={{ width: "2px", height: "0.82em", background: "currentColor" }}
+                />
+              ) : null}
+            </span>
+          </span>
+        </p>
+      ))}
+    </div>
+  );
+}
+
 function CodeCard() {
   const cardRef = useRef<HTMLDivElement>(null);
   const [motion, setMotion] = useState(false);
@@ -152,17 +264,20 @@ export function About() {
               </li>
             ))}
           </ul>
-          <div className="rise mt-12 max-w-xl border-t border-fuchsia-300/80 pt-8">
-            <p className="font-serif text-[2rem] leading-[1.12] tracking-tight text-ink sm:text-4xl">
-              {copy.aboutMark[0]}
-            </p>
-            <p className="mt-3 font-serif text-[2rem] leading-[1.12] tracking-tight text-cherry sm:text-4xl">
-              {copy.aboutMark[1]}
-            </p>
-          </div>
         </div>
         <CodeCard />
       </div>
+    </section>
+  );
+}
+
+export function AboutMark() {
+  const { lang } = useLang();
+  const copy = ui[lang];
+
+  return (
+    <section className="bg-blush px-5 py-20 sm:px-10 sm:py-28" aria-label={copy.aboutMark[0]}>
+      <MarkStatement lines={copy.aboutMark} />
     </section>
   );
 }

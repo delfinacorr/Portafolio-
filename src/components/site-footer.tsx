@@ -4,37 +4,12 @@ import { site } from "@/content/site";
 import { ui } from "@/i18n/copy";
 import { useLang } from "@/i18n/language";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
 
 export function SiteFooter() {
   const { lang } = useLang();
   const copy = ui[lang];
-  const signRef = useRef<HTMLDivElement>(null);
-  const [motion, setMotion] = useState(false);
-  const [visible, setVisible] = useState(false);
   const github = site.socials.find((item) => item.icon === "github");
   const linkedin = site.socials.find((item) => item.icon === "linkedin");
-
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const apply = () => setMotion(!media.matches);
-    apply();
-    media.addEventListener("change", apply);
-    return () => media.removeEventListener("change", apply);
-  }, []);
-
-  useEffect(() => {
-    const node = signRef.current;
-    if (!node || !motion) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.25 },
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [motion]);
 
   return (
     <footer id="contacto" className="bg-[#f6d3e6] px-5 py-16 text-ink sm:px-10 sm:py-20">
@@ -64,23 +39,8 @@ export function SiteFooter() {
           />
         </div>
 
-        <div
-          ref={signRef}
-          className="footer-sign mt-16 border-t border-ink/15 pt-12"
-          data-motion={motion ? "on" : "off"}
-          data-visible={visible ? "true" : "false"}
-        >
-          <p className="footer-sign-line text-center font-serif text-3xl leading-tight tracking-tight text-ink italic sm:text-4xl">
-            {copy.footerSignLine1}
-          </p>
-          <p className="footer-sign-line footer-sign-line-2 mt-1 text-center font-serif text-3xl leading-tight tracking-tight text-ink italic sm:text-4xl">
-            {copy.footerSignBefore} <span className="footer-beyond">{copy.footerSignBeyond}</span>{" "}
-            {copy.footerSignAfter}
-          </p>
-          <p className="footer-star mt-8 text-center text-xl text-cherry" aria-hidden>
-            ✦
-          </p>
-          <div className="mt-10 grid gap-8 sm:grid-cols-2">
+        <div className="mt-16 border-t border-ink/15 pt-12">
+          <div className="grid gap-8 sm:grid-cols-2">
             <div>
               <p className="text-sm font-semibold tracking-[0.18em] uppercase">{site.name}</p>
               <ul className="mt-3 space-y-1 text-sm text-ink/70">
